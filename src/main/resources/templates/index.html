@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang='zh_CN'>
+<head>
+    <meta charset="utf-8">
+    <title>深圳戏精学院</title>
+    <meta itemprop="name" content="深圳戏精学院官网"/>
+    <meta itemprop="description"
+          content="深圳,戏精,学院,深圳戏精,戏精学院,深圳戏精学院,深圳戏精学院官网,吃喝玩乐,"/>
+    <meta itemprop="image" content=""/>
+    <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+    <meta name="keywords"
+          content="深圳,戏精,学院,深圳戏精,戏精学院,深圳戏精学院,吃喝玩乐,深圳戏精学院官网"/>
+    <meta name="description"
+          content="上学读书,是戏精的重要修行之路。 戏精学院，就是这样一个孕育戏精的摇篮，每年都有来自五湖四海、世界各地的戏精来此学习，以期望自己能早日完成学业，得道成精。"/>
+    <meta name="generator" content="深圳戏精学院"/>
+    <meta name="author" content="戏精学院"/>
+    <meta property="qc:admins" content="7203417000153052166547"/>
+    <meta property="wb:webmaster" content="9093ab3e4780404b"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">-
+    <link href="https://xiu-cdn.oss-cn-hangzhou.aliyuncs.com/favicon.ico" rel="icon" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/kaifont.css">
+    <link rel="stylesheet" href="css/style-a87af194.css"/>
+    <script>
+        window._bd_share_config = {
+            common: {
+                bdText: "",
+                bdDesc: "",
+                bdUrl: location.href
+            },
+            share: [{
+                "bdSize": 16
+            }]
+        }
+    </script>
+</head>
+<body ng-app="xsj">
+<div id="httpload" ng-show="loading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+<div id="bs-index" class="view {{enterTop}}">
+    <div id="bs-top" layout="row">
+        <div class="wrap">
+            <div class="menu" ng-click="menuFun()"></div>
+            <div id="logo">
+                <a md-button aria-label="秀设计" href="###"><img style="height: 53px;" class="noease" ng-src="/images/logo.jpg"
+                                                            alt="秀设计"></a>
+            </div>
+            <ul id="nav-ul" ng-class="{'menuin' : menu}">
+                <li class="active"><a aria-label="首页" md-button href="###"><label>首页</label><span>/HOME</span> </a></li>
+                <li><a aria-label="活动" md-button ng-click="reflash()"
+                       href="###"><label>活动</label><span>/ACTIVITY</span></a></li>
+                <li><a aria-label="关于我们" md-button ng-click="reflash()"
+                       href="###"><label>关于我们</label><span>ABOUT</span></a></li>
+                <li><a aria-label="联系我们" md-button ng-click="reflash()"
+                       href="###"><label>联系我们</label><span>CONTACT</span></a></li>
+                </li>
+            </ul>
+            <div class="userlogin fr">
+                <md-button ng-click="searchBtn()" aria-label="搜索" title="搜索" class="md-icon-button upload-top"><i
+                        class="kaifont icon-search" ng-style="{color: searching ? '#57bae8' : ''}"></i></md-button>
+                <button ng-click="loginTip()" md-button aria-label="发布" title="发布" class="md-icon-button upload-top"><i
+                        class="kaifont icon-upload"></i></button>
+                <a target='view_window' class='min md-button' href='/'>
+                    <i class='kaifont icon-qq'></i></a><a target='view_window' class='min md-button' href='/'><i class='kaifont icon-sina'></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="bs-main">
+        <div class="searchdiv" ng-if="searching">
+            <div class="wrap">
+                <div class="search-top textcen">
+                    <md-input-container>
+                        <md-select ng-model="cateModel" ng-change="changeCate(cateModel)">
+                            <md-option ng-repeat="cate in cates" value="{{cate.key}}">
+                                {{cate.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <input id="search-text" type="text" placeholder="请输入..." ng-model="searchModel"
+                           ng-keydown="searchFun(searchModel, $event)">
+                    <md-button ng-click="searchFun(searchModel)" class="normal">搜索</md-button>
+                    <i class="kaifont icon-close" ng-click="searchBtn()"></i>
+                </div>
+                <div class="search-con" ng-if="searchList.length">
+                    <div class="list-left fl">
+                        <ul class="artlist-ul">
+                            <li ng-repeat='list in searchList track by list.aid'>
+                                <a target="_blank" ng-href="{{list.url}}" class="img-wrap"><img ng-if="list.pic"
+                                                                                                ng-src="{{list.pic?list.pic.replace('jpg.thumb.','')+'@!280':''}}"
+                                                                                                alt=""></a>
+                                <a target="_blank" ng-href="{{list.url}}"><h2 ng-bind-html="list.article_title"></h2>
+                                </a>
+                                <div class="info">
+                                    <a class="little" ng-href="/user/{{list.uid}}.html">
+                                        <span class="usr-wrap"><img class="noease"
+                                                                    ng-src="{{myfavFun(list.favicon, 40)}}"
+                                                                    alt=""></span>{{list.nickname}}
+                                    </a>
+                                    <a class="little" href="javascript:void()" ng-click="changeCate(list.category_cid)"><i
+                                            class="kaifont icon-apps"></i>{{list.cname}}</a>
+                                    <span class="little eye"><i class="kaifont icon-eye"></i>{{list.click}}</span>
+                                    <span class="little timefill"><i class="kaifont icon-timefill"></i>{{list.time*1000-10 | timeAgo:'yyyy-MM-dd HH:mm'}}</span>
+                                </div>
+                                <p><a target="_blank" ng-href="{{list.url}}" ng-bind="list.description"></a></p>
+                            </li>
+
+                        </ul>
+                        <div class="nodata" ng-if="nodataIndex"><i class="kaifont icon-warnfill"></i>无结果</div>
+                        <div class="nodata" ng-if="nomoreIndex"><i class="kaifont icon-warnfill"></i>没有更多了</div>
+                        <div class="pages" ng-if="countIndex > 1">
+                            <md-button scroll-to="item-list" duration="300" easing="easeOutQuint" offset="120"
+                                       aria-label="prev" ng-click="nextPage('prev')" class="md-primary prev fl"
+                                       ng-if="prevIndex">上一页
+                            </md-button>
+                            <span class="textcen" ng-if="countIndex > 5">
+        <md-button ng-click="nextPage(1)" class="md-primary" ng-if="pageIndex > 2">1</md-button>
+        <md-button class="md-primary" ng-disabled="true" ng-if="pageIndex > 3">···</md-button>
+        <md-button ng-click="nextPage(pageIndex-1)" class="md-primary" ng-if="pageIndex > 1">{{pageIndex-1}}</md-button>
+        <md-button class="md-primary active">{{pageIndex}}</md-button>
+        <md-button ng-click="nextPage(pageIndex+1)" class="md-primary"
+                   ng-if="countIndex-pageIndex > 1">{{pageIndex+1}}</md-button>
+        <md-button class="md-primary" ng-disabled="true" ng-if="countIndex-pageIndex > 3">···</md-button>
+        <md-button ng-click="nextPage(countIndex)" class="md-primary"
+                   ng-if="countIndex-pageIndex == 3">{{countIndex-1}}</md-button>
+        <md-button ng-click="nextPage(countIndex)" class="md-primary"
+                   ng-if="countIndex != pageIndex">{{countIndex}}</md-button>
+    </span>
+                            <span class="textcen" ng-if="countIndex <= 5">
+        <md-button ng-repeat="co in counts" ng-click="nextPage(co.mypage, page)"
+                   class="md-primary {{page==co.mypage?'active':''}}">{{co.mypage}}</md-button>
+    </span>
+                            <md-button scroll-to="bs-main" duration="300" easing="easeOutQuint" offset="120"
+                                       aria-label="next" ng-click="nextPage('next')" class="md-primary next fr"
+                                       ng-if="nextIndex">下一页
+                            </md-button>
+                        </div>
+                    </div>
+                    <div class="list-right fr">
+                        <div class="title">搜索结果数</div>
+                        <div class="red">{{total}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bs-con{{endstart}}" ng-hide="searching">
+            <script>
+                var ajax_get_banner_list = "";
+                var ajax_get_article_alllist = "";
+            </script>
+            <div id="dashboard" ng-controller="Index" class="view {{enter}}">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide blue-slide" style="background: #f8ddd5">
+                            <a href="/"><img
+                                    src="https://img.xiusheji.com/pic/201809/30/5bb081dceb6b7.jpg@1pr|90q"
+                                    class="noease" alt="2018台湾国际海报新星奖" title="2018台湾国际海报新星奖"></a>
+                        </div>
+
+                        <div class="swiper-slide blue-slide" style="background: #000000">
+                            <a href="/"><img
+                                    src="https://img.xiusheji.com/pic/201809/14/5b9b1b767c2a7.jpg@1pr|90q"
+                                    class="noease" alt="2019第十届CDN中国汽车设计大赛" title="2019第十届CDN中国汽车设计大赛"></a>
+                        </div>
+
+                        <div class="swiper-slide blue-slide" style="background: #c93b3a">
+                            <a href="/"><img
+                                    src="https://img.xiusheji.com/pic/201807/17/5b4d850857c7f.jpg@1pr|90q"
+                                    class="noease" alt="免费可商用中文字体整理下载" title="免费可商用中文字体整理下载"></a>
+                        </div>
+
+                        <div class="swiper-slide blue-slide" style="background: #255b8f">
+                            <a href="/"><img
+                                    src="https://img.xiusheji.com/pic/201807/17/5b4da27e4c8be.jpg@1pr|90q"
+                                    class="noease" alt="2019日本森泽字体设计大赛" title="2019日本森泽字体设计大赛"></a>
+                        </div>
+
+                        <div class="swiper-slide blue-slide" style="background: #000000">
+                            <a href="/"><img
+                                    src="https://img.xiusheji.com/pic/201809/03/5b8cc43f1be3d.jpg@1pr|90q"
+                                    class="noease" alt="耀世遗珍—阿富汗国家博物馆藏珍宝展" title="耀世遗珍—阿富汗国家博物馆藏珍宝展"></a>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                    <div class="swiper-button-next swiper-button-white"></div>
+                </div>
+                <div class="wrap pore" id="sytj">
+                    <h2 class="">就是要搞事</h2>
+                    <ul class="recommend-banner">
+
+                    </ul>
+                </div>
+                <div id="item-list" style="margin-top:30px;">
+                    <div class="wrap pore">
+                        <h2 class="">裂墙推荐</h2>
+                        <ul>
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1cq1ehhgm6k91i419r31edb8k9h.jpg@!280"
+                                                alt="“GameOn 绽放” 国际电子游戏博物馆设计"></div>
+                                        <strong class="title">“GameOn 绽放” 国际电子游戏博物馆设计</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease"
+                                            src="http://q.qlogo.cn/qqapp/101344751/DBD47E8DEED22D4C41411D480B960B4C/100"
+                                            alt=""></span>OnePenny</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>2404					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/pic/201810/10/5bbda4fe24818.jpg@!280"
+                                                alt="2018年索尼世界摄影大赛获奖作品（专业组）"></div>
+                                        <strong class="title">2018年索尼世界摄影大赛获奖作品（专业组）</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease"
+                                            src="http://img.xiusheji.com/Data/Uploads/image/20160724/57944cef4fadf.jpeg"
+                                            alt=""></span>秀设计</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>3246					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1cpbchcms3ds1du840g1l1g7nh.jpg@!280"
+                                                alt="McDonald’s 2.5亿美元打造的芝加哥全球总部"></div>
+                                        <strong class="title">McDonald’s 2.5亿美元打造的芝加哥全球总部</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease" src="http://img.xiusheji.com/images/2016112322413GWGz.jpg"
+                                            alt=""></span>Arry</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>724					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1cp95lrn7itu18hd122llj8140k24.png@!280"
+                                                alt="面包品牌设计by Canada Ghent"></div>
+                                        <strong class="title">面包品牌设计by Canada Ghent</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease" src="http://img.xiusheji.com/images/20161124125223MZJt.jpg"
+                                            alt=""></span>娜娜</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>1294					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1cp935tteqqf1f771qg9nbc1o4nh.jpg@!280"
+                                                alt="墙上涂鸦作品：scars over stars"></div>
+                                        <strong class="title">墙上涂鸦作品：scars over stars</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease" src="http://img.xiusheji.com/images/20161124125223MZJt.jpg"
+                                            alt=""></span>娜娜</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>2813					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1cp8r52s9odge8de5i4mhmrrh.jpeg@!280"
+                                                alt="派拉蒙特之家酒店：老仓库改酒店，粗糙的样子也很美"></div>
+                                        <strong class="title">派拉蒙特之家酒店：老仓库改酒店，粗糙的样子也很美</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease" src="http://img.xiusheji.com/images/20161124125223MZJt.jpg"
+                                            alt=""></span>娜娜</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>1364					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1cp8qkn96o10kn41apk1qtir1kh.jpg@!280"
+                                                alt="Luccari咖啡馆品牌形象设计欣赏"></div>
+                                        <strong class="title">Luccari咖啡馆品牌形象设计欣赏</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease" src="http://img.xiusheji.com/images/20161124125223MZJt.jpg"
+                                            alt=""></span>娜娜</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>1238					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1cokpare21q3913sb1dqj3f71crnq.jpg@!280"
+                                                alt="Lawless 系列椅子| Evan Fay"></div>
+                                        <strong class="title">Lawless 系列椅子| Evan Fay</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease" src="http://img.xiusheji.com/images/20161217145812jQPD.jpg"
+                                            alt=""></span>苏小姐</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>1394					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1cmkcs5m7sia1b9j18ns1kcr51rh.jpg@!280"
+                                                alt="胡慧姗纪念馆—刘家琨"></div>
+                                        <strong class="title">胡慧姗纪念馆—刘家琨</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease" src="http://img.xiusheji.com/images/2016112322413GWGz.jpg"
+                                            alt=""></span>Arry</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>2725					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1cm48hbmb1bers6mckrrqr8sh.jpg@!280"
+                                                alt="仿若遗世独立：隐于森林的湖畔度假小屋，重构生活与自然的关系"></div>
+                                        <strong class="title">仿若遗世独立：隐于森林的湖畔度假小屋，重构生活与自然的关系</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease" src="http://img.xiusheji.com/images/20161217145812jQPD.jpg"
+                                            alt=""></span>苏小姐</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>1035					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1cm46udap17gu8tflqhihjsn33t.jpg@!280"
+                                                alt="斯洛伐克摄影师Maria Svarbova 新作，于寂静池畔坠入魔幻时空"></div>
+                                        <strong class="title">斯洛伐克摄影师Maria Svarbova 新作，于寂静池畔坠入魔幻时空</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease" src="http://img.xiusheji.com/images/20161217145812jQPD.jpg"
+                                            alt=""></span>苏小姐</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>2383					</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-wrap">
+                                    <a target="_blank" href="###">
+                                        <div class="img-wrap"><img
+                                                lazy-src="https://img.xiusheji.com/images/o_1ck741ijejkhl7p1t5fc64vd3t.jpg@!280"
+                                                alt="葡萄牙阿尔加维山坡上的小教堂 capela do monte"></div>
+                                        <strong class="title">葡萄牙阿尔加维山坡上的小教堂 capela do monte</strong>
+                                    </a>
+                                    <span class="user-name fl"><a href="###"><span class="usr-wrap"><img
+                                            class="noease" src="http://img.xiusheji.com/images/2016112322413GWGz.jpg"
+                                            alt=""></span>Arry</a></span>
+                                    <span class="look-num fr">
+						<i class="kaifont icon-eye"></i>3229					</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="more-wrap">
+                            <div class="nodata" ng-if="nomore"><i class="kaifont icon-warnfill"></i>我是有底线的</div>
+                            <md-button ng-if="!nomore" ng-click="getMoreLists()" aria-label="more">加载更多 <i
+                                    class="kaifont icon-xiasanjiao"></i></md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="javascript:" class="scrollup" ng-show='scrollup' scroll-to="bs-index" duration="500" easing="easeOutQuint"><i
+            class="kaifont icon-top"></i></a>
+    <div id="foot">
+        <div class="wrap">
+            <div class="foot-top">
+                <ul>
+                    <h3>关于</h3>
+                    <li><a href="###">关于我们</a></li>
+                    <li><a href="###">加入我们</a></li>
+                    <li><a href="###">版权声明</a></li>
+                    <li><a href="###">免责声明</a></li>
+                </ul>
+                <ul>
+                    <h3>合作</h3>
+                    <li><a href="###">媒体合作</a></li>
+                    <li><a href="###">合作品牌</a></li>
+                    <li><a href="###">举办大赛</a></li>
+                    <li><a href="###">友情链接</a></li>
+                </ul>
+                <ul class="ex">
+                    <h3>分类目录</h3>
+                    <li><a href="###">首页</a></li>
+                    <li><a href="###">活动</a></li>
+                    <li><a href="###">关于我们</a></li>
+                    <li><a href="###">联系我们</a></li>
+                </ul>
+                <ul class="attention">
+
+                    <h3>关注我们</h3>
+                    <li><a href="javascript:" class="wxhover"><i class="kaifont icon-wechat"></i>
+                        <div class="wximg-wrap noease"><img
+                                ng-src="https://img.xiusheji.com/images/20161118122022X3QD.jpg" alt="wechat">
+                            <p>最新国际设计前沿，双语对照。<br>设计从业人员必备</p></div>
+                    </a></li>
+                    <li><a target="_blank" href="###"><i class="kaifont icon-sina"></i></a>
+                    </li>
+                    <li><a target="_blank" href="###"><i class="kaifont icon-douban"></i></a>
+                    </li>
+                    <li><a target="_blank" href="###"><i
+                            class="kaifont icon-pinterest"></i></a></li>
+                    <li><a target="_blank" href="###"><i class="kaifont icon-huaban"></i></a>
+                    </li>
+                    <p><a target="_blank" href="###"></a></br>
+                        联系我们：lpohu0571@outlook.com</p>
+                </ul>
+                <div class="line"></div>
+                <p>Copyright © 2010-2017 深圳戏精学院文化传媒有限公司</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Dependencies -->
+<script>
+    var groupCid = '';
+    var ajax_pic_data = "";
+</script>
+<script src="js/lib-72121d2f.js"></script>
+
+<script src="js/app-6754e7fe.js"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?683c41e52083b457796c450fb41559a8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+<html>
