@@ -15,8 +15,14 @@ public class Index {
     public String index(){
         return "index.html";
     }
+
     @RequestMapping("/home/home")
     public String home(){
         return "home.html";
+    }
+
+    @RequestMapping("/twts/index")
+    public String twts_index(){
+        return "index-particles.html";
     }
 }
