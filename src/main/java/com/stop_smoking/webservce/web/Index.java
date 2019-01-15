@@ -1,4 +1,4 @@
-package com.xjxy.webservce.web;
+package com.stop_smoking.webservce.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class Index {
 
-    @RequestMapping("/index")
-    public String index(){
-        return "index.html";
-    }
+//    @RequestMapping("/index")
+//    public String index(){
+//        return "index.html";
+//    }
 
     @RequestMapping("/home/home")
     public String home(){
         return "home.html";
     }
 
-    @RequestMapping("/twts/index")
+    @RequestMapping("/index")
     public String twts_index(){
         return "index-particles.html";
     }
